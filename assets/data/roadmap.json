@@ -74,7 +74,7 @@
     {
       "id": "v0-2-0",
       "version": "0.2.0 Alpha",
-      "status": "Released",
+      "status": "In Development",
       "progress": 0,
       "category": "Memory",
       "description": "Einführung eines persistenten Kurzzeitgedächtnisses sowie erste Verbesserungen an der Antwortgeschwindigkeit der Sprachverarbeitung.",
