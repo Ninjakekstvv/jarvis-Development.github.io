@@ -1,0 +1,296 @@
+/* ==========================================================================
+   main.css
+   --------------------------------------------------------------------------
+   Zentrales Variablen-, Reset- und Typografie-Stylesheet.
+   Alle anderen CSS-Dateien (layout.css, cards.css, timeline.css,
+   animations.css, responsive.css) bauen ausschließlich auf den hier
+   definierten CSS Custom Properties auf. Dadurch bleibt das gesamte
+   Farb- und Abstandssystem an einer einzigen Stelle wartbar.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties — Dark Theme (Standard)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Basis-Hintergründe: dunkles Marineblau/Navy, gestaffelt für Tiefe */
+  --bg-base: #060b16;
+  --bg-elevated: #0a1120;
+  --bg-surface: #0d1526;
+  --bg-surface-hover: #111c33;
+  --bg-glass: rgba(13, 21, 38, 0.55);
+
+  /* Primärfarben: Dunkelblau → Marineblau → Hellblau → Cyan */
+  --color-navy: #0f1a30;
+  --color-blue-deep: #14224a;
+  --color-blue: #2563eb;
+  --color-blue-light: #60a5fa;
+  --color-cyan: #22d3ee;
+  --color-cyan-soft: #67e8f9;
+
+  /* Text */
+  --text-primary: #eef2f9;
+  --text-secondary: #a7b3c7;
+  --text-tertiary: #6b7890;
+  --text-on-accent: #05131f;
+
+  /* Rahmen & Trennlinien */
+  --border-subtle: rgba(148, 163, 184, 0.12);
+  --border-medium: rgba(148, 163, 184, 0.2);
+  --border-glow: rgba(96, 165, 250, 0.35);
+
+  /* Verläufe */
+  --gradient-primary: linear-gradient(135deg, #0b1224 0%, #12224a 45%, #163a63 100%);
+  --gradient-accent: linear-gradient(120deg, #2563eb 0%, #22d3ee 100%);
+  --gradient-text: linear-gradient(120deg, #60a5fa 0%, #22d3ee 55%, #67e8f9 100%);
+  --gradient-card: linear-gradient(160deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 60%);
+  --gradient-glow-1: radial-gradient(circle, rgba(37, 99, 235, 0.35) 0%, rgba(37, 99, 235, 0) 70%);
+  --gradient-glow-2: radial-gradient(circle, rgba(34, 211, 238, 0.28) 0%, rgba(34, 211, 238, 0) 70%);
+
+  /* Schatten */
+  --shadow-sm: 0 2px 8px rgba(2, 6, 16, 0.35);
+  --shadow-md: 0 8px 24px rgba(2, 6, 16, 0.45);
+  --shadow-lg: 0 20px 60px rgba(2, 6, 16, 0.55);
+  --shadow-glow-blue: 0 0 32px rgba(37, 99, 235, 0.25);
+  --shadow-glow-cyan: 0 0 32px rgba(34, 211, 238, 0.2);
+
+  /* Radien */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* Abstände (8px-Grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Typografie */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'SF Mono', 'Fira Code', Consolas, Monaco, monospace;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 0.9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.5rem;
+  --fs-3xl: 3.25rem;
+
+  /* Transitions */
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 600ms;
+
+  /* Blur */
+  --blur-glass: 20px;
+
+  /* Layout */
+  --max-width: 1280px;
+  --header-height: 76px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Light Theme Override
+   -------------------------------------------------------------------------- */
+:root[data-theme='light'] {
+  --bg-base: #f3f6fb;
+  --bg-elevated: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #eef3fb;
+  --bg-glass: rgba(255, 255, 255, 0.65);
+
+  --text-primary: #10192e;
+  --text-secondary: #4a5670;
+  --text-tertiary: #7c879e;
+  --text-on-accent: #ffffff;
+
+  --border-subtle: rgba(15, 26, 48, 0.08);
+  --border-medium: rgba(15, 26, 48, 0.14);
+  --border-glow: rgba(37, 99, 235, 0.25);
+
+  --gradient-primary: linear-gradient(135deg, #eef3fb 0%, #dce8fb 45%, #cfe6f5 100%);
+  --gradient-card: linear-gradient(160deg, rgba(15, 26, 48, 0.03) 0%, rgba(15, 26, 48, 0) 60%);
+
+  --shadow-sm: 0 2px 8px rgba(15, 26, 48, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 26, 48, 0.08);
+  --shadow-lg: 0 20px 60px rgba(15, 26, 48, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   3. Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  background-image: var(--gradient-primary);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color var(--duration-base) var(--ease-standard),
+              color var(--duration-base) var(--ease-standard);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+input {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: #ffffff;
+}
+
+/* Scrollbar-Styling für ein hochwertigeres, konsistentes Erscheinungsbild
+   in WebKit-basierten Browsern. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blue-light);
+}
+
+/* --------------------------------------------------------------------------
+   4. Typografie-Hilfsklassen
+   -------------------------------------------------------------------------- */
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-cyan-soft);
+}
+
+/* --------------------------------------------------------------------------
+   5. Icon-Basisklassen
+   -------------------------------------------------------------------------- */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.icon--tiny {
+  width: 14px;
+  height: 14px;
+  margin-right: var(--space-1);
+  vertical-align: -2px;
+}
+
+.icon--chevron {
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.icon--chevron-open {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
+   6. Fataler Fehlerzustand (siehe app.js renderFatalError)
+   -------------------------------------------------------------------------- */
+.fatal-error {
+  max-width: 560px;
+  margin: var(--space-9) auto;
+  padding: var(--space-6);
+  text-align: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.fatal-error__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-4);
+}
+
+.fatal-error__title {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-3);
+}
+
+.fatal-error__message {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.fatal-error__detail {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  font-family: var(--font-family-mono);
+}
+
+.fatal-error code {
+  font-family: var(--font-family-mono);
+  background: var(--bg-elevated);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}

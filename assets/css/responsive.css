@@ -1,0 +1,199 @@
+/* ==========================================================================
+   responsive.css
+   --------------------------------------------------------------------------
+   Breakpoint-Anpassungen für Tablet- und Mobile-Ansichten. Desktop
+   (>1024px) ist der in den übrigen Stylesheets definierte Standard-Stil.
+   Mobile-first wird hier bewusst NICHT verfolgt, da die Basis-Layouts
+   (main.css/layout.css/cards.css) primär für breite Viewports optimiert
+   sind und über die folgenden Media Queries gezielt heruntergebrochen
+   werden — das hält die Kernstile lesbarer und vermeidet doppelte
+   Grundregeln.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tablet (≤ 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .progress-ring-wrap {
+    order: -1;
+  }
+
+  .progress-ring {
+    width: 176px;
+    height: 176px;
+  }
+
+  .hero__title {
+    font-size: var(--fs-2xl);
+  }
+
+  .header-stats {
+    gap: var(--space-4);
+  }
+
+  .header-stat:nth-child(3),
+  .header-stats .header-divider:nth-of-type(3) {
+    display: none;
+  }
+
+  .feature-list {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Mobile (≤ 720px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .brand__subtitle {
+    display: none;
+  }
+
+  .header-stats {
+    gap: var(--space-3);
+  }
+
+  .header-stat:nth-child(2),
+  .header-stats .header-divider:nth-of-type(2) {
+    display: none;
+  }
+
+  .header-stat__label {
+    display: none;
+  }
+
+  .hero {
+    padding: var(--space-7) 0 var(--space-6);
+  }
+
+  .hero__title {
+    font-size: var(--fs-xl);
+  }
+
+  .hero__description {
+    font-size: var(--fs-sm);
+    max-width: none;
+  }
+
+  .hero__meta-row {
+    gap: var(--space-3);
+  }
+
+  .progress-ring {
+    width: 152px;
+    height: 152px;
+  }
+
+  .progress-ring__value {
+    font-size: var(--fs-xl);
+  }
+
+  .filter-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--space-1);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .filter-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-row__label {
+    display: none;
+  }
+
+  .search-box {
+    max-width: none;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .version-card {
+    grid-template-columns: 8px 1fr;
+    gap: var(--space-3);
+  }
+
+  .version-card__node {
+    width: 8px;
+    height: 8px;
+    top: var(--space-5);
+  }
+
+  .timeline-track::before {
+    left: 3px;
+  }
+
+  .version-card__surface {
+    padding: var(--space-4);
+  }
+
+  .version-card__header {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .version-card__version {
+    font-size: var(--fs-md);
+  }
+
+  .version-card__footer {
+    gap: var(--space-3);
+  }
+
+  .version-card__toggle {
+    margin-left: 0;
+    padding: 6px 0;
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+
+  .app-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Sehr kleine Bildschirme (≤ 380px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .hero__title {
+    font-size: 1.5rem;
+  }
+
+  .progress-ring {
+    width: 132px;
+    height: 132px;
+  }
+
+  .brand__name {
+    font-size: var(--fs-sm);
+  }
+}

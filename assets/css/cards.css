@@ -1,0 +1,358 @@
+/* ==========================================================================
+   cards.css
+   --------------------------------------------------------------------------
+   Styling für Versionskarten, Status-Badges, Fortschrittsbalken,
+   Feature-Listen und Filter-Chips. Enthält den Glassmorphism-Look
+   (Blur, Border Glow, Soft Shadows) und die zugehörigen Hover-Effekte.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Filter-Chips
+   -------------------------------------------------------------------------- */
+.filter-chip {
+  --chip-accent: var(--color-blue-light);
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.filter-chip:hover {
+  border-color: var(--chip-accent);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.filter-chip--active {
+  /* Fallback für Browser ohne color-mix()-Unterstützung (z. B. Safari <16.4):
+     eine feste, dezente Verlaufsfärbung mit der Basisfarbe. Wird von der
+     folgenden Deklaration überschrieben, sobald color-mix() unterstützt wird. */
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.18), rgba(96, 165, 250, 0.06));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--chip-accent) 22%, transparent), color-mix(in srgb, var(--chip-accent) 8%, transparent));
+  border-color: var(--chip-accent);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.3), 0 4px 16px rgba(96, 165, 250, 0.2);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--chip-accent) 40%, transparent), 0 4px 16px color-mix(in srgb, var(--chip-accent) 25%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   2. Status-Badge
+   -------------------------------------------------------------------------- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--status-color, var(--color-blue-light));
+  /* Fallback-Werte ohne color-mix() (z. B. Safari <16.4) */
+  background: rgba(96, 165, 250, 0.14);
+  background: color-mix(in srgb, var(--status-color, var(--color-blue-light)) 14%, transparent);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  border: 1px solid color-mix(in srgb, var(--status-color, var(--color-blue-light)) 35%, transparent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-badge .icon--tiny {
+  color: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   3. Fortschrittsbalken
+   -------------------------------------------------------------------------- */
+.progress-bar {
+  position: relative;
+  flex: 1;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: var(--radius-full);
+  /* Fallback ohne color-mix() (z. B. Safari <16.4) */
+  background: linear-gradient(90deg, var(--color-blue), var(--status-color, var(--color-cyan)));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--status-color, var(--color-blue)) 70%, var(--color-blue)), var(--status-color, var(--color-cyan)));
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--status-color, var(--color-cyan)) 55%, transparent);
+  transition: width 1.1s var(--ease-standard);
+}
+
+.progress-bar__value {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  min-width: 34px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.version-card__progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. Versionskarte — Container & Glassmorphism-Oberfläche
+   -------------------------------------------------------------------------- */
+.version-card {
+  --card-delay: 0ms;
+  position: relative;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--duration-slow) var(--ease-standard),
+              transform var(--duration-slow) var(--ease-standard);
+  transition-delay: var(--card-delay);
+}
+
+.version-card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.version-card__surface {
+  position: relative;
+  background: var(--bg-glass);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: border-color var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard);
+}
+
+/* Dezenter Verlaufs-Sheen oben links, typisch für hochwertige
+   Glassmorphism-Oberflächen (Linear/Apple-Stil). */
+.version-card__surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card);
+  pointer-events: none;
+}
+
+/* Border-Glow-Effekt: ein weicher, farbiger Schein passend zum Status,
+   der bei Hover verstärkt wird. */
+.version-card__surface::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--status-color, var(--color-blue-light)), transparent 60%);
+  opacity: 0.25;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.version-card:hover .version-card__surface {
+  transform: translateY(-4px);
+  border-color: var(--status-color, var(--border-glow));
+  /* Fallback ohne color-mix() (z. B. Safari <16.4) */
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(96, 165, 250, 0.25);
+  box-shadow: var(--shadow-lg), 0 0 0 1px color-mix(in srgb, var(--status-color, var(--color-blue-light)) 25%, transparent);
+}
+
+.version-card:hover .version-card__surface::after {
+  opacity: 0.55;
+}
+
+/* --------------------------------------------------------------------------
+   5. Versionskarte — Header
+   -------------------------------------------------------------------------- */
+.version-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.version-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.version-card__icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  color: var(--status-color, var(--color-blue-light));
+  background: rgba(96, 165, 250, 0.12);
+  background: color-mix(in srgb, var(--status-color, var(--color-blue-light)) 12%, transparent);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  border: 1px solid color-mix(in srgb, var(--status-color, var(--color-blue-light)) 25%, transparent);
+}
+
+.version-card__icon-badge .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.version-card__title-group {
+  min-width: 0;
+}
+
+.version-card__category {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-1);
+}
+
+.version-card__category .icon--tiny {
+  color: var(--color-cyan-soft);
+}
+
+.version-card__version {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   6. Versionskarte — Beschreibung & Footer
+   -------------------------------------------------------------------------- */
+.version-card__description {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.version-card__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.version-card__meta {
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.version-card__meta .icon--tiny {
+  color: var(--text-tertiary);
+}
+
+.version-card__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--color-cyan-soft);
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.version-card__toggle:hover {
+  background: var(--bg-surface-hover);
+}
+
+/* --------------------------------------------------------------------------
+   7. Versionskarte — Aufklappbare Details (Accordion)
+   -------------------------------------------------------------------------- */
+.version-card__details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows var(--duration-base) var(--ease-standard),
+              opacity var(--duration-base) var(--ease-standard);
+}
+
+.version-card__details.is-expanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: var(--space-4);
+}
+
+.version-card__details > .version-card__details-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.version-card__screenshot {
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.version-card__screenshot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-2) var(--space-4);
+  padding-top: var(--space-1);
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.feature-item__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--status-color, var(--color-cyan));
+  /* Fallback ohne color-mix() (z. B. Safari <16.4) */
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--status-color, var(--color-cyan)) 70%, transparent);
+  flex-shrink: 0;
+}

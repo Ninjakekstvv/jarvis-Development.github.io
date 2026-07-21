@@ -1,0 +1,118 @@
+/* ==========================================================================
+   animations.css
+   --------------------------------------------------------------------------
+   Zentrale Keyframe-Definitionen und wiederverwendbare Animations-
+   Hilfsklassen. Die eigentlichen "is-visible"/"is-revealed"-Übergänge
+   (Opacity + Transform) sind aus Wartbarkeitsgründen direkt bei den
+   jeweiligen Komponenten in layout.css/cards.css definiert; hier liegen
+   die kontinuierlichen bzw. wiederkehrenden Animationen (Glow-Pulse,
+   Logo-Rotation, Eyebrow-Blink, Skeleton-Loading).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Logo Glow Pulse
+   -------------------------------------------------------------------------- */
+@keyframes logoGlowPulse {
+  0%, 100% {
+    box-shadow: var(--shadow-glow-blue);
+  }
+  50% {
+    box-shadow: 0 0 44px rgba(37, 99, 235, 0.45), 0 0 20px rgba(34, 211, 238, 0.35);
+  }
+}
+
+.brand__logo {
+  animation: logoGlowPulse 4s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   2. Eyebrow-Dot Blink (Hero "Live"-Indikator)
+   -------------------------------------------------------------------------- */
+@keyframes eyebrowBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.hero__eyebrow-dot {
+  animation: eyebrowBlink 2.2s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   3. Sanftes Schweben für den Fortschrittsring (dezent, nicht ablenkend)
+   -------------------------------------------------------------------------- */
+@keyframes ringFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.progress-ring {
+  animation: ringFloat 6s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   4. Bg-Glow dezente Atmung (unabhängig vom Parallax-Transform in JS,
+      daher auf einem inneren Pseudo-Element via Opacity animiert, um
+      keine widersprüchlichen transform-Werte mit animations.js zu
+      erzeugen). */
+@keyframes glowBreathe {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.bg-glow {
+  animation: glowBreathe 8s ease-in-out infinite;
+}
+
+.bg-glow--two {
+  animation-delay: 2.5s;
+}
+
+.bg-glow--three {
+  animation-delay: 5s;
+}
+
+/* --------------------------------------------------------------------------
+   5. Fade-In-Up Utility (generisch wiederverwendbar)
+   -------------------------------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--duration-slow) var(--ease-standard) both;
+}
+
+/* --------------------------------------------------------------------------
+   6. Reduced Motion — respektiert Nutzer-Präferenzen systemweit
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

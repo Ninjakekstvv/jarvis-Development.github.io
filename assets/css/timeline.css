@@ -1,0 +1,78 @@
+/* ==========================================================================
+   timeline.css
+   --------------------------------------------------------------------------
+   Vertikale Timeline-Struktur, entlang derer die Versionskarten
+   angeordnet werden: die durchgehende Linie, die einzelnen Knoten pro
+   Karte sowie deren Anbindung an die Karten-Oberfläche.
+   ========================================================================== */
+
+.timeline-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Durchgehende vertikale Linie hinter den Karten-Knoten. Wird über ein
+   Pseudo-Element auf dem Track selbst erzeugt, damit sie unabhängig von
+   der Anzahl der Karten immer die volle Höhe der Liste abdeckt. */
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--border-medium) 6%,
+    var(--border-medium) 94%,
+    transparent 100%
+  );
+}
+
+.version-card {
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+/* Zeitleisten-Knoten: ein leuchtender Punkt in der Statusfarbe der
+   jeweiligen Karte, der die Position auf der vertikalen Linie markiert. */
+.version-card__node {
+  position: relative;
+  top: var(--space-6);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--status-color, var(--color-blue-light));
+  box-shadow: 0 0 0 4px var(--bg-base), 0 0 16px var(--status-glow, var(--status-color));
+  flex-shrink: 0;
+}
+
+.version-card__node::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--status-color, var(--color-blue-light));
+  opacity: 0.35;
+}
+
+.version-card:hover .version-card__node {
+  animation: nodePulse 1.6s var(--ease-standard) infinite;
+}
+
+@keyframes nodePulse {
+  0% {
+    box-shadow: 0 0 0 4px var(--bg-base), 0 0 16px var(--status-glow, var(--status-color));
+  }
+  50% {
+    box-shadow: 0 0 0 4px var(--bg-base), 0 0 26px var(--status-glow, var(--status-color));
+  }
+  100% {
+    box-shadow: 0 0 0 4px var(--bg-base), 0 0 16px var(--status-glow, var(--status-color));
+  }
+}

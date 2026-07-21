@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jarvis — Development Roadmap</title>
+  <meta name="description" content="Offizielle Entwicklungs-Roadmap des KI-Assistenten Jarvis. Versionen, Features und Fortschritt im Überblick." />
+
+  <!-- Stylesheets: main.css definiert Variablen/Reset und muss zuerst geladen werden,
+       die übrigen Module bauen ausschließlich auf diesen Variablen auf. -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/cards.css" />
+  <link rel="stylesheet" href="assets/css/timeline.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <!-- Inline-SVG-Favicon (kein externer Asset-Request nötig) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M12 6v7l4 2.3' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Hintergrund-Ebenen: dezente Glow-Layer + Grid-Muster für Tiefe.
+       Liegen hinter dem gesamten Inhalt (z-index: -1) und werden über
+       animations.js dezent per Parallax bewegt.
+       ========================================================================== -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow bg-glow--one"></div>
+    <div class="bg-glow bg-glow--two"></div>
+    <div class="bg-glow bg-glow--three"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app-shell" id="app-root">
+
+    <!-- ========================================================================
+         HEADER
+         ======================================================================== -->
+    <header class="app-header">
+      <div class="container app-header__inner">
+
+        <div class="brand">
+          <div class="brand__logo">
+            <svg class="brand__logo-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3.5c-2.2 0-4 1.8-4 4 0 .6.1 1.1.4 1.6C7.1 9.7 6.3 11 6.3 12.5c0 1.3.7 2.5 1.8 3.1-.2.4-.3.9-.3 1.4 0 2.2 1.8 4 4 4 .3 0 .6 0 .9-.1"/>
+              <path d="M12 3.5c2.2 0 4 1.8 4 4 0 .6-.1 1.1-.4 1.6 1.3.6 2.1 1.9 2.1 3.4 0 1.3-.7 2.5-1.8 3.1.2.4.3.9.3 1.4 0 2.2-1.8 4-4 4-.3 0-.6 0-.9-.1"/>
+              <circle cx="12" cy="12" r="1.7"/>
+            </svg>
+          </div>
+          <div class="brand__text">
+            <span class="brand__name">Jarvis <span class="text-gradient">Roadmap</span></span>
+            <span class="brand__subtitle" id="project-tagline">Autonomer KI-Assistent — Entwicklungs-Roadmap</span>
+          </div>
+        </div>
+
+        <div class="header-stats">
+          <div class="header-stat">
+            <span class="header-stat__value" id="stat-overall" data-target="0">0</span>
+            <span class="header-stat__label">Gesamtfortschritt %</span>
+          </div>
+          <div class="header-divider"></div>
+          <div class="header-stat">
+            <span class="header-stat__value" id="stat-versions" data-target="0">0</span>
+            <span class="header-stat__label">Versionen</span>
+          </div>
+          <div class="header-divider"></div>
+          <div class="header-stat">
+            <span class="header-stat__value" id="stat-features" data-target="0">0</span>
+            <span class="header-stat__label">Features</span>
+          </div>
+          <div class="header-divider"></div>
+          <div class="header-stat">
+            <span class="header-stat__value" id="stat-update">—</span>
+            <span class="header-stat__label">Letztes Update</span>
+          </div>
+
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Theme wechseln" title="Zwischen Dark- und Light-Theme wechseln">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3.5a8.5 8.5 0 1 0 8.3 10.3A6.8 6.8 0 0 1 12 3.5z"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ======================================================================
+           HERO
+           ====================================================================== -->
+      <section class="hero" id="hero">
+        <div class="container hero__grid">
+
+          <div class="hero__content">
+            <span class="hero__eyebrow">
+              <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+              <span class="eyebrow">Live Development Status</span>
+            </span>
+
+            <h1 class="hero__title">Die Zukunft von <span class="text-gradient">Jarvis</span><br />wird gerade gebaut.</h1>
+
+            <p class="hero__description">
+              Verfolge in Echtzeit, woran am autonomen KI-Assistenten Jarvis gearbeitet wird —
+              von Kernarchitektur über Sprachsteuerung bis hin zu Langzeitgedächtnis und
+              visuellem Automatisierungs-Builder.
+            </p>
+
+            <div class="hero__meta-row">
+              <span class="hero__meta-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>
+                <strong id="stat-released-inline">—</strong>&nbsp;bereits released
+              </span>
+              <span class="hero__meta-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.5v2.3M12 18.2v2.3M20.5 12h-2.3M5.8 12H3.5"/></svg>
+                In aktiver Entwicklung
+              </span>
+            </div>
+          </div>
+
+          <div class="progress-ring-wrap">
+            <div class="progress-ring">
+              <svg class="progress-ring__svg" viewBox="0 0 120 120" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2563eb" />
+                    <stop offset="100%" stop-color="#22d3ee" />
+                  </linearGradient>
+                </defs>
+                <circle class="progress-ring__bg" cx="60" cy="60" r="54"></circle>
+                <circle class="progress-ring__fg" id="hero-progress-ring-fg" cx="60" cy="60" r="54"></circle>
+              </svg>
+              <div class="progress-ring__label">
+                <span class="progress-ring__value" id="hero-progress-value" data-target="0">0</span>
+                <span class="progress-ring__caption">Gesamt&shy;fortschritt</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           FILTERLEISTE
+           ====================================================================== -->
+      <section class="filter-section" id="filter-section">
+        <div class="container">
+
+          <div class="search-row">
+            <div class="search-box">
+              <svg class="icon search-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="6.5"/><path d="M19.5 19.5 15 15"/>
+              </svg>
+              <input
+                type="text"
+                class="search-box__input"
+                id="search-input"
+                placeholder="Versionen, Features oder Beschreibungen durchsuchen…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" class="search-box__clear" id="search-clear" aria-label="Suche zurücksetzen">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 6l12 12M18 6 6 18"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <span class="filter-row__label">Status</span>
+            <div class="filter-chip-bar" id="status-filter-bar"></div>
+          </div>
+
+          <div class="filter-row">
+            <span class="filter-row__label">Kategorie</span>
+            <div class="filter-chip-bar" id="category-filter-bar"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           TIMELINE
+           ====================================================================== -->
+      <section class="timeline-section">
+        <div class="container">
+
+          <div class="timeline-header" id="timeline-header">
+            <h2 class="timeline-header__title">Versions-Timeline</h2>
+            <span class="timeline-header__count"><strong id="result-count">0</strong> Versionen angezeigt</span>
+          </div>
+
+          <div class="timeline-track" id="timeline-track"></div>
+
+          <div class="empty-state" id="empty-state">
+            <svg class="empty-state__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"/><path d="M19.5 19.5 15 15"/>
+            </svg>
+            <h3 class="empty-state__title">Keine Versionen gefunden</h3>
+            <p class="empty-state__message">Passe deine Suche oder die aktiven Filter an, um Ergebnisse zu sehen.</p>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ========================================================================
+         FOOTER
+         ======================================================================== -->
+    <footer class="app-footer">
+      <div class="container app-footer__inner">
+        <span>Jarvis Development Roadmap · Interne Projektdokumentation</span>
+        <div class="app-footer__legend">
+          <span class="legend-item"><span class="legend-item__dot" style="background:#22d3ee"></span> Released</span>
+          <span class="legend-item"><span class="legend-item__dot" style="background:#3b82f6"></span> In Development</span>
+          <span class="legend-item"><span class="legend-item__dot" style="background:#818cf8"></span> Planned</span>
+          <span class="legend-item"><span class="legend-item__dot" style="background:#38bdf8"></span> Research</span>
+          <span class="legend-item"><span class="legend-item__dot" style="background:#94a3b8"></span> On Hold</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ============================================================================
+       Scripts — Reihenfolge ist wichtig:
+       1) roadmap.js  — reine Datenlogik, definiert window.JarvisRoadmap
+       2) ui.js       — Rendering, definiert window.JarvisUI
+       3) animations.js — Animationslogik, definiert window.JarvisAnimations
+       4) app.js      — Einstiegspunkt, lädt roadmap.json und ruft die
+                         init()-Funktionen der obigen Module in der
+                         richtigen Reihenfolge auf
+       ============================================================================ -->
+  <script src="assets/js/roadmap.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>

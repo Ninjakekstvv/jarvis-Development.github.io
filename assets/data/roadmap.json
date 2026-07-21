@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "projectName": "Jarvis",
+    "tagline": "Autonomer KI-Assistent — Entwicklungs-Roadmap",
+    "lastUpdate": "2026-07-21"
+  },
+  "statuses": {
+    "Released": {
+      "color": "#22d3ee",
+      "glow": "rgba(34, 211, 238, 0.45)",
+      "icon": "check",
+      "label": "Released"
+    },
+    "In Development": {
+      "color": "#3b82f6",
+      "glow": "rgba(59, 130, 246, 0.45)",
+      "icon": "cog",
+      "label": "In Development"
+    },
+    "Planned": {
+      "color": "#818cf8",
+      "glow": "rgba(129, 140, 248, 0.4)",
+      "icon": "calendar",
+      "label": "Planned"
+    },
+    "Research": {
+      "color": "#38bdf8",
+      "glow": "rgba(56, 189, 248, 0.4)",
+      "icon": "flask",
+      "label": "Research"
+    },
+    "On Hold": {
+      "color": "#94a3b8",
+      "glow": "rgba(148, 163, 184, 0.35)",
+      "icon": "pause",
+      "label": "On Hold"
+    },
+    "Cancelled": {
+      "color": "#64748b",
+      "glow": "rgba(100, 116, 139, 0.3)",
+      "icon": "cross",
+      "label": "Cancelled"
+    }
+  },
+  "categories": [
+    "Core",
+    "Voice",
+    "Memory",
+    "AI",
+    "Builder",
+    "Automation",
+    "Performance",
+    "Experimental",
+    "UI"
+  ],
+  "versions": [
+    {
+      "id": "v0-1-0",
+      "version": "0.1.0 Alpha",
+      "status": "Released",
+      "progress": 100,
+      "category": "Core",
+      "description": "Erste lauffähige Alpha-Version von Jarvis mit grundlegender Sprachsteuerung, Text-to-Speech und einem einfachen Automatisierungs-Builder.",
+      "releaseDate": "2025-11-02",
+      "icon": "rocket",
+      "features": [
+        "Speech-to-Text Engine (Basis)",
+        "Text-to-Speech Ausgabe",
+        "Einfacher Befehls-Parser",
+        "Automatisierungs-Builder v1",
+        "Lokale Task-Planung"
+      ]
+    },
+    {
+      "id": "v0-2-0",
+      "version": "0.2.0 Alpha",
+      "status": "Released",
+      "progress": 100,
+      "category": "Memory",
+      "description": "Einführung eines persistenten Kurzzeitgedächtnisses sowie erste Verbesserungen an der Antwortgeschwindigkeit der Sprachverarbeitung.",
+      "releaseDate": "2025-12-14",
+      "icon": "database",
+      "features": [
+        "Kurzzeitgedächtnis-Modul",
+        "Kontext-Fenster Erweiterung",
+        "Antwortzeit-Optimierung",
+        "Fehlerprotokollierung"
+      ]
+    },
+    {
+      "id": "v0-3-0",
+      "version": "0.3.0 Beta",
+      "status": "In Development",
+      "progress": 65,
+      "category": "AI",
+      "description": "Integration eines lokalen Sprachmodells für kontextbezogene Entscheidungen sowie ein überarbeitetes Intent-Erkennungssystem.",
+      "releaseDate": "Q3 2026",
+      "icon": "brain",
+      "features": [
+        "Lokales Sprachmodell-Backend",
+        "Intent-Erkennung v2",
+        "Mehrstufige Dialogführung",
+        "Emotionserkennung (Stimme)",
+        "Adaptive Antwortpriorisierung"
+      ]
+    },
+    {
+      "id": "v0-4-0",
+      "version": "0.4.0 Beta",
+      "status": "In Development",
+      "progress": 30,
+      "category": "Voice",
+      "description": "Natürlichere Stimmsynthese mit variabler Betonung sowie Unterstützung für mehrere Sprachprofile.",
+      "releaseDate": "Q4 2026",
+      "icon": "waveform",
+      "features": [
+        "Neue TTS-Stimmengine",
+        "Mehrsprachige Sprachprofile",
+        "Betonungssteuerung",
+        "Hintergrundgeräusch-Filter"
+      ]
+    },
+    {
+      "id": "v0-5-0",
+      "version": "0.5.0",
+      "status": "Planned",
+      "progress": 0,
+      "category": "Builder",
+      "description": "Visueller Automatisierungs-Builder mit Drag-and-Drop-Oberfläche zur Erstellung eigener Jarvis-Workflows ohne Code.",
+      "releaseDate": "Q1 2027",
+      "icon": "layers",
+      "features": [
+        "Drag-and-Drop Workflow Editor",
+        "Wiederverwendbare Bausteine",
+        "Bedingte Logik-Blöcke",
+        "Workflow-Vorlagen"
+      ]
+    },
+    {
+      "id": "v0-6-0",
+      "version": "0.6.0",
+      "status": "Planned",
+      "progress": 0,
+      "category": "Automation",
+      "description": "Erweiterte Systemautomatisierung inklusive geplanter Routinen, Trigger-basierter Aktionen und Geräteintegration.",
+      "releaseDate": "Q2 2027",
+      "icon": "bolt",
+      "features": [
+        "Zeitgesteuerte Routinen",
+        "Trigger-basierte Aktionen",
+        "Smart-Home Anbindung",
+        "Makro-Aufzeichnung"
+      ]
+    },
+    {
+      "id": "v0-7-0",
+      "version": "0.7.0",
+      "status": "Research",
+      "progress": 15,
+      "category": "Memory",
+      "description": "Forschung an einem echten Langzeitgedächtnis mit semantischer Verknüpfung vergangener Interaktionen und Wissensgraphen.",
+      "releaseDate": "TBA",
+      "icon": "flask",
+      "features": [
+        "Langzeitgedächtnis-Architektur",
+        "Semantischer Wissensgraph",
+        "Erinnerungs-Priorisierung",
+        "Vergessens-Algorithmus"
+      ]
+    },
+    {
+      "id": "v0-8-0",
+      "version": "0.8.0",
+      "status": "Research",
+      "progress": 10,
+      "category": "Performance",
+      "description": "Untersuchung von Optimierungsstrategien zur Reduktion von Latenz und Ressourcenverbrauch bei lokaler Modellausführung.",
+      "releaseDate": "TBA",
+      "icon": "gauge",
+      "features": [
+        "Modell-Quantisierung",
+        "Lazy-Loading von Komponenten",
+        "GPU/CPU Lastverteilung",
+        "Speicher-Caching Strategien"
+      ]
+    },
+    {
+      "id": "v0-9-0",
+      "version": "0.9.0",
+      "status": "On Hold",
+      "progress": 20,
+      "category": "Experimental",
+      "description": "Experimentelles Modul für proaktive Vorschläge basierend auf Nutzerverhalten. Aktuell pausiert zugunsten der Kernstabilität.",
+      "releaseDate": "Pausiert",
+      "icon": "pause",
+      "features": [
+        "Verhaltensmuster-Analyse",
+        "Proaktive Vorschläge",
+        "Kontextuelle Erinnerungen"
+      ]
+    },
+    {
+      "id": "v0-9-5",
+      "version": "0.9.5",
+      "status": "Cancelled",
+      "progress": 0,
+      "category": "UI",
+      "description": "Ursprünglich geplantes browserbasiertes Dashboard wurde zugunsten der nativen Oberfläche verworfen.",
+      "releaseDate": "Verworfen",
+      "icon": "cross",
+      "features": [
+        "Browser-Dashboard (verworfen)",
+        "Cloud-Sync (verworfen)"
+      ]
+    },
+    {
+      "id": "v1-0-0",
+      "version": "1.0.0",
+      "status": "Planned",
+      "progress": 0,
+      "category": "Core",
+      "description": "Erste stabile Hauptversion von Jarvis mit vollständigem Funktionsumfang, überarbeiteter Architektur und Enterprise-tauglicher Stabilität.",
+      "releaseDate": "Q4 2027",
+      "icon": "shield",
+      "features": [
+        "Stabile Kernarchitektur",
+        "Vollständige Sprachsteuerung",
+        "Langzeitgedächtnis (final)",
+        "Visueller Builder (final)",
+        "Plugin-System",
+        "Umfassende Dokumentation"
+      ]
+    }
+  ]
+}
