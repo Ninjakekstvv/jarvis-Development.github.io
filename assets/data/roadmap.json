@@ -209,8 +209,8 @@
       "releaseDate": "coming soon",
       "icon": "cross",
       "features": [
-        "Browser-Dashboard (verworfen)",
-        "Cloud-Sync (verworfen)"
+        "Browser-Dashboard",
+        "Cloud-Sync"
       ]
     },
     {
